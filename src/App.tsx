@@ -73,7 +73,7 @@ function App() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `http://localhost:8000/search?offset=${currentPage}&limit=${limit}`,
+        `https://backend-g9lt.onrender.com/search?offset=${currentPage}&limit=${limit}`,
         {
           player_name: playerName,
           position,
@@ -104,7 +104,7 @@ function App() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:8000/players`);
+      const response = await axios.get(`https://backend-g9lt.onrender.com/players`);
       const players = response.data.data.map(
         (player: any) => player.player_name
       );
