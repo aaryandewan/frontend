@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import axios from "axios";
+import posthog from "posthog-js";
 
 type Position =
   | "QB"
@@ -59,6 +60,9 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
   const [limit, setLimit] = useState(3);
+  posthog.init("phc_Avy01zk0BseMMK5fHYUu94ai7Ats7gTjC3tClw6CXt8", {
+    api_host: "https://us.i.posthog.com",
+  });
 
   const [loading, setLoading] = useState(false);
 
@@ -104,7 +108,9 @@ function App() {
     }
 
     try {
-      const response = await axios.get(`https://backend-g9lt.onrender.com/players`);
+      const response = await axios.get(
+        `https://backend-g9lt.onrender.com/players`
+      );
       const players = response.data.data.map(
         (player: any) => player.player_name
       );
